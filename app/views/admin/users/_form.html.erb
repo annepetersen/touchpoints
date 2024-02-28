@@ -10,11 +10,19 @@
     </div>
   <% end %>
   <div class="field">
+    <%= form.label :first_name, class: "usa-label" %>
+    <%= form.text_field :first_name, { class: "usa-input" } %>
+  </div>
+  <div class="field">
+    <%= form.label :last_name, class: "usa-label" %>
+    <%= form.text_field :last_name, { class: "usa-input" } %>
+  </div>
+  <div class="field">
     <%= form.label :organization_id, class: "usa-label" %>
     <%= form.select :organization_id, options_for_select(organization_dropdown_options, selected: user.organization_id), { prompt: "Select Organization" }, { class: "usa-select" } %>
   </div>
   <% if admin_permissions? %>
-  <div class="well">
+  <div class="well margin-top-2">
     <div class="grid-row">
       <div class="tablet:grid-col-6">
         <fieldset class="usa-fieldset">
@@ -200,7 +208,7 @@
     </div>
   </div>
   <% end %>
-  <div class="actions">
+  <div class="actions margin-bottom-2">
     <%= form.submit class: "usa-button" %>
     <% if admin_permissions? %>
       <%= link_to admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "usa-button usa-button--secondary float-right" do %>
