@@ -30,7 +30,7 @@
         <%= link_to @organization.parent.name, admin_organization_path(@organization.parent) %>
       </div>
       <% end -%>
-      
+
       <div class="grid-col-12">
         <%= label_tag "Name", nil, class: "usa-label" %>
         <%= @organization.name %>
@@ -80,7 +80,7 @@
       (displaying Thumbnail version)
       <br>
       <br>
-      <%= image_tag(@organization.logo.thumb.url) %>
+      <%= image_tag(@organization.logo.thumb.url, alt: "#{@organization.name} logo") %>
       <br>
       <%= link_to "Full Size", @organization.logo.url, target: "_blank", rel: "noopener" %><br>
       <%= link_to "Thumbnail Size", @organization.logo.thumb.url, target: "_blank", rel: "noopener" %><br>
