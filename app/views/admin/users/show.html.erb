@@ -59,18 +59,23 @@
     </span>
   <% end %>
   <p>
-    <label class="usa-label">Email</label>
+    <label class="usa-label text-bold">Email</label>
     <br>
     <%= link_to @user.email, "mailto:#{@user.email}" %>
   </p>
   <p>
-    <label class="usa-label">Organization</label>
+    <label class="usa-label text-bold">First & last name</label>
+    <br>
+    <%= @user.first_name %> <%= @user.last_name %>
+  </p>
+  <p>
+    <label class="usa-label text-bold">Organization</label>
     <br>
     <%= @user.organization ? link_to(@user.organization.name, admin_organization_path(@user.organization)) : "Undefined" %>
   </p>
   <% if current_user == @user || admin_permissions? %>
   <p>
-    <label class="usa-label">Latest login</label>
+    <label class="usa-label text-bold">Latest login</label>
     <br>
     <% if @user.current_sign_in_at %>
       <%= format_time(@user.current_sign_in_at, current_user.time_zone) %> -
@@ -207,17 +212,38 @@
     Websites
   </h4>
   <% if @websites.present? %>
-    <ul class="usa-list">
-    <% @websites.each do |website| %>
-      <li>
-        <%= link_to website.domain, admin_website_path(website) %>
-        &middot;
-        <%= website.aasm_state %>
-        &middot;
-        <%= website.production_status %>
-      </li>
-    <% end %>
-    </ul>
+    <table class="usa-table width-full">
+      <thead>
+        <tr>
+          <th>
+            Domain
+          </th>
+          <th>
+            Lifecycle status
+          </th>
+          <th>
+            Production status
+          </th>
+        </tr>
+      </thead>
+      <% @websites.each do |website| %>
+      <tbody>
+        <tr>
+          <td>
+            <%= link_to website.domain, admin_website_path(website) %>
+          </td>
+          <td>
+            <%= website.aasm_state %>
+          </td>
+          </td>
+          <td>
+            <%= website.production_status %>
+          </td>
+        </tr>
+      </tbody>
+      <% end %>
+    </table>
+
   <% else %>
   <div class="usa-alert usa-alert--info">
     <div class="usa-alert__body">
@@ -234,7 +260,7 @@
     Data Collections
   </h4>
   <% if @collections.present? %>
-  <table class="usa-table">
+  <table class="usa-table width-full">
     <thead>
       <tr>
         <th>Fiscal year</th>
