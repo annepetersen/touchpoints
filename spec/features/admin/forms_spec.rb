@@ -669,7 +669,7 @@ feature 'Forms', js: true do
         describe 'character limit field' do
           before do
             visit questions_admin_form_path(form)
-            click_on 'Add Question'
+            find(".form-add-question").click
           end
 
           it 'shows character limit field' do
@@ -693,7 +693,7 @@ feature 'Forms', js: true do
           describe 'help text and placeholder text' do
             before do
               visit questions_admin_form_path(form)
-              click_on 'Add Question'
+              find(".form-add-question").click
               fill_in 'question_text', with: 'New Test Question'
               choose 'question_question_type_text_field'
               fill_in 'question_help_text', with: 'Additional help text for this question'
@@ -724,7 +724,7 @@ feature 'Forms', js: true do
           describe 'add a Text Field question' do
             before do
               visit questions_admin_form_path(form)
-              click_on 'Add Question'
+              find(".form-add-question").click
               fill_in 'question_text', with: 'New Test Question'
               choose 'question_question_type_text_field'
               select('answer_01', from: 'question_answer_field')
@@ -743,7 +743,7 @@ feature 'Forms', js: true do
           describe 'add a Text Phone Field question' do
             before do
               visit questions_admin_form_path(form)
-              click_on 'Add Question'
+              find(".form-add-question").click
               fill_in 'question_text', with: 'New Test Question'
               choose 'question_question_type_text_phone_field'
               select('answer_01', from: 'question_answer_field')
@@ -781,7 +781,7 @@ feature 'Forms', js: true do
           describe 'add a Radio Buttons question' do
             before do
               visit questions_admin_form_path(form)
-              click_on 'Add Question'
+              find(".form-add-question").click
               fill_in 'question_text', with: 'New Test Question Radio Buttons'
               choose 'question_question_type_radio_buttons'
               select('answer_01', from: 'question_answer_field')
@@ -800,7 +800,7 @@ feature 'Forms', js: true do
           describe 'add a Checkbox question' do
             before do
               visit questions_admin_form_path(form)
-              click_on 'Add Question'
+              find(".form-add-question").click
               choose 'question_question_type_checkbox'
               select('answer_01', from: 'question_answer_field')
               click_on 'Update Question'
@@ -856,7 +856,7 @@ feature 'Forms', js: true do
             end
 
             it 'successfully executes add-update-add-update sequence' do
-              click_on 'Add Question'
+              find(".form-add-question").click
               click_on 'Update Question'
               expect(page).not_to have_content('prohibited this question from being saved')
               click_on 'Add Question'
@@ -870,7 +870,7 @@ feature 'Forms', js: true do
 
             before do
               visit questions_admin_form_path(form)
-              click_on 'Add Question'
+              find(".form-add-question").click
             end
 
             it 'displays answers that are not assigned to other Questions' do
@@ -883,7 +883,7 @@ feature 'Forms', js: true do
             describe '#create' do
               before do
                 visit questions_admin_form_path(form)
-                click_on 'Add Question'
+                find(".form-add-question").click
                 expect(page.current_path).to eq(questions_admin_form_path(form))
                 choose 'question_question_type_dropdown'
                 # select("dropdown", from: "question_question_type")
@@ -971,7 +971,7 @@ feature 'Forms', js: true do
             describe '#create' do
               before do
                 visit questions_admin_form_path(form)
-                click_on 'Add Question'
+                find(".form-add-question").click
                 expect(page.current_path).to eq(questions_admin_form_path(form))
                 choose 'question_question_type_states_dropdown'
                 fill_in 'question_text', with: 'New dropdown field'
@@ -1011,7 +1011,7 @@ feature 'Forms', js: true do
           describe 'add a text display element' do
             before do
               visit questions_admin_form_path(form)
-              click_on 'Add Question'
+              find(".form-add-question").click
               expect(page.current_path).to eq(questions_admin_form_path(form))
               choose 'question_question_type_text_display'
               fill_in 'question_text', with: 'Some custom <a href="#">html</a>'
